@@ -73,7 +73,17 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    @php
+                        $auth_user = Illuminate\Support\Facades\Auth::user();
+                    @endphp
+                    @if(isset($auth_user) && $auth_user->role =='admin')
+                        @include('layouts.sidebar')
+                    @endif
+                    @yield('content')
+                </div>
+            </div>
         </main>
     </div>
 </body>
